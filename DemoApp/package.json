@@ -1,0 +1,28 @@
+{
+  "name": "comp2068-mcp-demo",
+  "version": "1.0.0",
+  "description": "Student Assistant MCP server created for the COMP2068 group tutorial",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "inspect": "npm run build && npx @modelcontextprotocol/inspector node build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "typescript",
+    "comp2068"
+  ],
+  "author": "COMP2068 Team MCP Servers",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0-beta.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^1.0.0",
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2"
+  }
+}
