@@ -41,17 +41,6 @@ Example:
 
 ---
 
-## 2. Assignment Reminder
-
-Users enter:
-
-- Assignment Name
-- Due Date
-
-The application returns a reminder message.
-
----
-
 ## 3. Grade Average
 
 Users enter three grades.
