@@ -156,7 +156,7 @@ app.get("/", (_request: Request, response: Response) => {
               <h2>Course Information</h2>
 
               <label for="courseCode">Course code</label>
-             <!-- Adding a dropdown for courses, so users dont get a not dound result,either by mistyping or entering a course we dont have 
+             <!-- Adding a dropdown for courses, so users dont get a not found result,either by mistyping or entering a course we dont have 
               <input id="courseCode" value="COMP2084" /> -->
               <select id="courseCode">
                 <option value="COMP2068">COMP2068</option>
@@ -179,10 +179,10 @@ app.get("/", (_request: Request, response: Response) => {
               <label for="assignmentName">Assignment name</label>
 
               <input id="assignmentName" value="MCP Group Tutorial" />
-
+              <!-- changed the date picker from value to date type, so users can pick an actual date and not input invalid text -->
               <label for="dueDate">Due date</label>
 
-              <input id="dueDate" value="July 26, 2026" />
+              <input id="dueDate" type="date" />
 
               <button onclick="createReminder()">
                 Create Reminder
@@ -333,10 +333,8 @@ app.post(
 
       return;
     }
-
-    const message =
-      courses[courseCode] ??
-      "Sorry, no course information was found for that course code.";
+    //Removing this error message since students can only get course info about the courses we only have in the dropdwown
+    const message = courses[courseCode];
 
     response.json({ message });
   }
