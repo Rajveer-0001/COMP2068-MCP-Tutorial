@@ -156,8 +156,13 @@ app.get("/", (_request: Request, response: Response) => {
               <h2>Course Information</h2>
 
               <label for="courseCode">Course code</label>
-
-              <input id="courseCode" value="COMP2084" />
+             <!-- Adding a dropdown for courses, so users dont get a not dound result,either by mistyping or entering a course we dont have 
+              <input id="courseCode" value="COMP2084" /> -->
+              <select id="courseCode">
+                <option value="COMP2068">COMP2068</option>
+                <option value="COMP2084" selected>COMP2084</option>
+                <option value="GNED1066">GNED1066</option>
+              </select>
 
               <button onclick="getCourseInformation()">
                 Get Course Information
