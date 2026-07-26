@@ -359,10 +359,10 @@ app.post(
     ).trim();
 
     const dueDate = String(request.body.dueDate ?? "").trim();
-
-    if (!assignmentName || !dueDate) {
+    //Assignment name should be at least 3 chars, so if a user enters less, it throws an error
+    if (!assignmentName || !dueDate || assignmentName.length < 3 ) {
       response.status(400).json({
-        error: "Please enter the assignment name and due date.",
+        error: "Please enter the assignment name(at least 3 characters) and due date.",
       });
 
       return;
