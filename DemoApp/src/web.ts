@@ -116,6 +116,13 @@ app.get("/", (_request: Request, response: Response) => {
             line-height: 1.5;
           }
 
+          /*Red styling to result for errors, so users differntiate between errors and succesful results*/
+          .result.error {
+            background: #fdecea;
+            border-left-color: #c0392b;
+            color: #7a2419;
+          }
+
           footer {
             margin-top: 35px;
             padding: 22px;
@@ -250,9 +257,12 @@ app.get("/", (_request: Request, response: Response) => {
                 "/api/course-information",
                 { courseCode }
               );
-
+              //Sucess: remove any error styling
+              resultBox.classList.remove("error");
               resultBox.textContent = result.message;
             } catch (error) {
+              //Failure: Add error styling
+              resultBox.classList.add("error");
               resultBox.textContent = error.message;
             }
           }
@@ -273,8 +283,12 @@ app.get("/", (_request: Request, response: Response) => {
                 { assignmentName, dueDate }
               );
 
+              //Sucess: remove any error styling
+              resultBox.classList.remove("error");
               resultBox.textContent = result.message;
             } catch (error) {
+              //Failure: Add error styling
+              resultBox.classList.add("error");
               resultBox.textContent = error.message;
             }
           }
@@ -284,25 +298,22 @@ app.get("/", (_request: Request, response: Response) => {
               document.getElementById("gradeResult");
 
             try {
-              const gradeOne = Number(
-                document.getElementById("gradeOne").value
-              );
-
-              const gradeTwo = Number(
-                document.getElementById("gradeTwo").value
-              );
-
-              const gradeThree = Number(
-                document.getElementById("gradeThree").value
-              );
+              //Get the raw values before converting them to numbers, cuz an empyt input equals 0 in js and would not be rejected
+              const gradeOne = document.getElementById("gradeOne").value;
+              const gradeTwo = document.getElementById("gradeTwo").value;
+              const gradeThree = document.getElementById("gradeThree").value;
 
               const result = await sendRequest(
                 "/api/grade-average",
                 { gradeOne, gradeTwo, gradeThree }
               );
 
+              //Sucess: remove any error styling
+              resultBox.classList.remove("error");
               resultBox.textContent = result.message;
             } catch (error) {
+              //Failure: Add error styling
+              resultBox.classList.add("error");
               resultBox.textContent = error.message;
             }
           }
@@ -366,10 +377,22 @@ app.post(
 app.post(
   "/api/grade-average",
   (request: Request, response: Response) => {
+    //Get the raw values before converting them to numbers, cuz an empyt input equals 0 in js and would not be rejected
+    const rawGradeOne = request.body.gradeOne;
+    const rawGradeTwo = request.body.gradeTwo;
+    const rawGradeThree = request.body.gradeThree;
+
+    if (rawGradeOne === "" || rawGradeTwo === "" || rawGradeThree === "") {
+      response.status(400).json({
+        error: "Please enter all three grades.",
+      });
+      return;
+    }
+
     const grades = [
-      Number(request.body.gradeOne),
-      Number(request.body.gradeTwo),
-      Number(request.body.gradeThree),
+      Number(rawGradeOne),
+      Number(rawGradeTwo),
+      Number(rawGradeThree),
     ];
 
     const invalidGrade = grades.some(
