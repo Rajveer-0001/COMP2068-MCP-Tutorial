@@ -58,7 +58,29 @@ app.get("/", (_request: Request, response: Response) => {
             padding: 24px;
             border-radius: 12px;
             box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
-          }
+            /*Adding hover effect and transition to cards*/
+            transition: transform 0.15s ease, box shadow 0.15s ease;
+            }
+
+            .card {
+            border: 2px solid transparent;
+            }
+            .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            }
+
+           .card-course:hover {
+           border-color: #274e9d;
+            }
+           .card-reminder:hover { 
+           border-color: #b8860b; 
+           }
+           .card-grade:hover {
+            border-color: #1e7d5b;
+            }
+
+
 
           .intro {
             margin-bottom: 24px;
@@ -146,6 +168,11 @@ app.get("/", (_request: Request, response: Response) => {
           }
 
           /*make each card have its own color,and also when the buttons are hovered it changes color*/
+          /#Adding background color for each card*/
+          .card-course{
+          background: #f3f6fd;
+          }
+          
           .card-course h2{
           color: #274e9d;
           }
@@ -155,6 +182,10 @@ app.get("/", (_request: Request, response: Response) => {
           .card-course button:hover {
           background: #1d3c7b
           }
+          .card-reminder {
+          background: #fdf8ee;
+          }
+          
           .card-reminder h2{
           color: #b8860b;
           }
@@ -163,6 +194,9 @@ app.get("/", (_request: Request, response: Response) => {
           }
           .card-reminder button:hover{
           background: #8f6a08;
+          }
+          .card-grade { 
+          background: #eef8f3;
           }
           .card-grade h2{
           color: #1e7d5b;
