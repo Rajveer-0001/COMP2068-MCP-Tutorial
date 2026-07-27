@@ -74,6 +74,11 @@ app.get("/", (_request: Request, response: Response) => {
             margin-top: 0;
             color: #274e9d;
           }
+            /*Making each content in a card fill up the remaning space left*/
+            .card {
+            display: flex;
+            flex-direction: column;
+            }
 
           label {
             display: block;
@@ -100,15 +105,24 @@ app.get("/", (_request: Request, response: Response) => {
             color: white;
             font-size: 1rem;
             cursor: pointer;
+            /*Adding transition for smooth hover effect */
+            transition: background 0.15 ease, transform 0.1 ease;
           }
 
           button:hover {
             background: #1d3c7b;
+            transform: translateY(-1px);
+          }
+
+          button:active {
+            transform: translateY(0);
           }
 
           .result {
-            min-height: 70px;
-            margin-top: 16px;
+           //Removing min height, and setting it to fixed height so all 3 result boxes line up evenly,regardless of any text length*/
+            height: 70px;
+            overflow-y: auto;
+            margin-top: auto;
             padding: 13px;
             background: #eef3ff;
             border-left: 4px solid #274e9d;
@@ -129,6 +143,35 @@ app.get("/", (_request: Request, response: Response) => {
             background: #17213a;
             color: white;
             text-align: center;
+          }
+
+          /*make each card have its own color,and also when the buttons are hovered it changes color*/
+          .card-course h2{
+          color: #274e9d;
+          }
+          .card-course button{
+          background: #274e9d;
+          }
+          .card-course button:hover {
+          background: #1d3c7b
+          }
+          .card-reminder h2{
+          color: #b8860b;
+          }
+          .card-reminder button{
+          background: #b8860b;
+          }
+          .card-reminder button:hover{
+          background: #8f6a08;
+          }
+          .card-grade h2{
+          color: #1e7d5b;
+          }
+          .card-grade button{
+          background: #1e7d5b;
+          }
+          .card-grade button:hover{
+          background: #155c43;
           }
         </style>
       </head>
@@ -159,7 +202,8 @@ app.get("/", (_request: Request, response: Response) => {
           </section>
 
           <section class="tools">
-            <article class="card">
+            <!-- Adding a card specific class so each tool has its color -->
+            <article class="card card-course">
               <h2>Course Information</h2>
 
               <label for="courseCode">Course code</label>
@@ -180,7 +224,7 @@ app.get("/", (_request: Request, response: Response) => {
               </div>
             </article>
 
-            <article class="card">
+            <article class="card card-reminder">
               <h2>Assignment Reminder</h2>
 
               <label for="assignmentName">Assignment name</label>
@@ -200,7 +244,7 @@ app.get("/", (_request: Request, response: Response) => {
               </div>
             </article>
 
-            <article class="card">
+            <article class="card card-grade">
               <h2>Grade Average</h2>
 
               <label for="gradeOne">Grade one</label>
