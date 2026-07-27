@@ -32,13 +32,13 @@ app.get("/", (_request: Request, response: Response) => {
           body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: #f3f5f8;
+            background: #faf7f5;
             color: #202633;
           }
 
           header {
             padding: 42px 20px;
-            background: #17213a;
+            background: #3b2352;
             color: white;
             text-align: center;
           }
@@ -162,7 +162,7 @@ app.get("/", (_request: Request, response: Response) => {
           footer {
             margin-top: 35px;
             padding: 22px;
-            background: #17213a;
+            background: #3b2352;
             color: white;
             text-align: center;
           }
